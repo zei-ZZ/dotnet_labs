@@ -3,17 +3,19 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using TP3.Models;
+using TP4.Models;
 
 #nullable disable
 
-namespace TP3.Migrations
+namespace TP4.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231128095458_correction")]
+    partial class correction
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -37,7 +39,7 @@ namespace TP3.Migrations
                     b.ToTable("CustomerMovie");
                 });
 
-            modelBuilder.Entity("TP3.Models.Customer", b =>
+            modelBuilder.Entity("TP4.Models.Customer", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -57,7 +59,7 @@ namespace TP3.Migrations
                     b.ToTable("Customers");
                 });
 
-            modelBuilder.Entity("TP3.Models.Genre", b =>
+            modelBuilder.Entity("TP4.Models.Genre", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -70,21 +72,9 @@ namespace TP3.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Genres");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("84ca0bcd-082c-49cb-aa77-ea2f1f5f8285"),
-                            Name = "GenreFromJsonFile1"
-                        },
-                        new
-                        {
-                            Id = new Guid("79e6f638-d7e7-4f63-8365-f172cb925381"),
-                            Name = "GenreFromJsonFile2"
-                        });
                 });
 
-            modelBuilder.Entity("TP3.Models.MembershipType", b =>
+            modelBuilder.Entity("TP4.Models.MembershipType", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -108,23 +98,16 @@ namespace TP3.Migrations
                     b.ToTable("MembershipTypes");
                 });
 
-            modelBuilder.Entity("TP3.Models.Movie", b =>
+            modelBuilder.Entity("TP4.Models.Movie", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("DateAdded")
-                        .HasColumnType("datetime2");
-
                     b.Property<Guid?>("GenreId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Photo")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -137,43 +120,43 @@ namespace TP3.Migrations
 
             modelBuilder.Entity("CustomerMovie", b =>
                 {
-                    b.HasOne("TP3.Models.Customer", null)
+                    b.HasOne("TP4.Models.Customer", null)
                         .WithMany()
                         .HasForeignKey("CustomersId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TP3.Models.Movie", null)
+                    b.HasOne("TP4.Models.Movie", null)
                         .WithMany()
                         .HasForeignKey("MoviesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("TP3.Models.Customer", b =>
+            modelBuilder.Entity("TP4.Models.Customer", b =>
                 {
-                    b.HasOne("TP3.Models.MembershipType", "MembershipType")
+                    b.HasOne("TP4.Models.MembershipType", "MembershipType")
                         .WithMany("Customers")
                         .HasForeignKey("MembershipTypeId");
 
                     b.Navigation("MembershipType");
                 });
 
-            modelBuilder.Entity("TP3.Models.Movie", b =>
+            modelBuilder.Entity("TP4.Models.Movie", b =>
                 {
-                    b.HasOne("TP3.Models.Genre", "Genre")
+                    b.HasOne("TP4.Models.Genre", "Genre")
                         .WithMany("Movies")
                         .HasForeignKey("GenreId");
 
                     b.Navigation("Genre");
                 });
 
-            modelBuilder.Entity("TP3.Models.Genre", b =>
+            modelBuilder.Entity("TP4.Models.Genre", b =>
                 {
                     b.Navigation("Movies");
                 });
 
-            modelBuilder.Entity("TP3.Models.MembershipType", b =>
+            modelBuilder.Entity("TP4.Models.MembershipType", b =>
                 {
                     b.Navigation("Customers");
                 });
