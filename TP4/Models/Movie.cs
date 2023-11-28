@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TP4.Models
 {
@@ -7,8 +8,10 @@ namespace TP4.Models
         public Guid Id { get; set; }
         public string Name{ get; set; }
         [Display(Name = "movie added")]
-        public DateTime added { get; set; }
-        public string photo { get; set; }
+        public DateTime DateAdded { get; set; }
+        public string Photo { get; set; }
+        [NotMapped]
+        public IFormFile ImageFile { get; set; }
         public Guid? GenreId { get; set; }
         public Genre? Genre { get; set; }
         public ICollection<Customer>? Customers { get; set; }

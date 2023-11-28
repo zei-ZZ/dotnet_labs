@@ -24,5 +24,6 @@ namespace TP4.Services
         {
             return _movieRepository.GetMoviesByGenreId(genreId);
         }
+        public IEnumerable<Movie> GetAllMovies() { return _movieRepository.GetAllMovies();}
     }
 }

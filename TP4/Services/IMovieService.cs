@@ -7,5 +7,7 @@ namespace TP4.Services
         IEnumerable<Movie> GetMoviesByGenre(string genreName);
         IEnumerable<Movie> GetAllMoviesOrderedByTitle();
         IEnumerable<Movie> GetMoviesByGenreId(Guid genreId);
+        IEnumerable<Movie> GetAllMovies();
+        void Add(Movie m);
     }
 }
