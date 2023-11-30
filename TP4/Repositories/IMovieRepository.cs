@@ -8,5 +8,6 @@ namespace TP4.Repositories
         IEnumerable<Movie> GetAllMoviesOrderedByTitle();
         IEnumerable<Movie> GetMoviesByGenreId(Guid genreId);
         IEnumerable<Movie> GetAllMovies();
+        void Add(Movie m);
     }
 }

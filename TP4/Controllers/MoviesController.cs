@@ -22,6 +22,15 @@ namespace TP4.Controllers
         {
             return View(_movieService.GetAllMovies());
         }
+        public IActionResult Create() {
+            return View();
+
+        }
+        public IActionResult Create(Movie m) {
+            _movieService.Add(m);
+            return RedirectToAction(nameof(Index));
+
+        }
 
     }
 }
