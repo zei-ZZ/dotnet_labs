@@ -24,9 +24,7 @@ namespace TP1.Controllers
         public IActionResult CustomerDetails(int id)
         {
             // Logique pour récupérer les détails du client par son Id
-            
-
-    return View(customer);
+            return View();
         }
     }
 }
