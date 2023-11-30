@@ -1,0 +1,11 @@
+﻿2/ 
+probleme rencontré: 
+    Error 404 not found 
+Solution:
+    ajouter la configuration des routes a program.cs 
+    app.MapControllerRoute(name: "moviesByRelease",
+        pattern: "Movie/released/{year}/{month}",
+        defaults: new { controller = "Movie", action = "ByRelease" })
+    Cela indique à ASP.NET Core MVC d'acheminer les requêtes avec le modèle d'URL spécifié vers l'action ByRelease de votre contrôleur MovieController. Assurez-vous que l'action ByRelease accepte les paramètres year et month
+
+2/
